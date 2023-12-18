@@ -32,6 +32,10 @@ image:
 	docker build -t $(CONTAINER_IMAGE) --platform=linux/amd64 .
 	docker push $(CONTAINER_IMAGE)
 
+.PHONY: remove-tag
+remove-tag:
+	gcloud run services update-traffic $(SERVICE) --region=us-central1 --remove-tags=$(VER)
+
 .PHONY: update-traffic-latest
 update-traffic-latest:
 	gcloud run services update-traffic $(SERVICE) --region=us-central1 --to-latest
