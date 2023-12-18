@@ -8,6 +8,7 @@ tag-deploy:
 	--allow-unauthenticated \
  	--tag=$(VER) \
 	--cpu=2 --memory=1Gi \
+	--min-instances=2 \
 	--set-env-vars=VERSION=$(VER) \
 	--no-traffic
 
@@ -16,6 +17,7 @@ deploy:
 	gcloud run deploy $(SERVICE) --image=$(CONTAINER_IMAGE) --region=us-central1 \
 	--allow-unauthenticated \
 	--cpu=2 --memory=1Gi \
+	--min-instances=2 \
 	--set-env-vars=VERSION=standard
 
 .PHONY: deploy-no-traffic
@@ -23,6 +25,7 @@ deploy-no-traffic:
 	gcloud run deploy $(SERVICE) --image=$(CONTAINER_IMAGE) --region=us-central1 \
 	--allow-unauthenticated \
 	--cpu=2 --memory=1Gi \
+	--min-instances=2 \
 	--set-env-vars=VERSION=$(VER) \
 	--no-traffic
 
