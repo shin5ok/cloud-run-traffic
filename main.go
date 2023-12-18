@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"log/slog"
 	"net/http"
 	"os"
@@ -45,7 +46,7 @@ func init() {
 	}
 
 	logger = slog.New(slog.NewJSONHandler(os.Stdout, &options))
-	slog.SetDefault(logger)
+	// slog.SetDefault(logger)
 
 }
 
@@ -58,6 +59,7 @@ func main() {
 			"version", versionString,
 			"revision", cloudRunRev,
 		)
+		log.Println(cloudRunRev, versionString)
 	})
 
 	if port == "" {
